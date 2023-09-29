@@ -16,7 +16,7 @@ export const ConnetionButtons: React.FC<ConnetionButtonsProps> = (props) => {
             <div className="shadow-inner shadow-white w-40 rounded-xl mt-2 bg-transparent backdrop-blur py-3">
               <ExtensionLoginButton
                 className="!rounded-xl !border-0 !bg-gradient-to-r !from-blue-400 !to-purple-500 !shadow-xl"
-                callbackRoute={"/"}
+                callbackRoute={"/wallet"}
                 loginButtonText={"Extension"}
               />
               <WalletConnectLoginButton

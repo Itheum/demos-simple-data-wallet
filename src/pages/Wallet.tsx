@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { useGetAccount, useGetPendingTransactions } from "@multiversx/sdk-dapp/hooks";
 import { DataNft } from "@itheum/sdk-mx-data-nft/out";
 import { DataNftCards } from "../components/DataNftCards";
@@ -27,6 +27,10 @@ export const Wallet: React.FC = () => {
       fetchData();
     }
   }, [hasPendingTransactions]);
+
+  if (isLoading) {
+    return <Suspense fallback={<div>Loading</div>}></Suspense>;
+  }
 
   return (
     <div className="flex flex-col justify-between gap-4 w-full mx-auto">
@@ -60,7 +64,7 @@ export const Wallet: React.FC = () => {
         <label
           htmlFor="table"
           className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-          Table
+          Details
         </label>
       </div>
       {isCards ? (
@@ -68,8 +72,8 @@ export const Wallet: React.FC = () => {
           {dataNfts &&
             dataNfts.map((data, index) => {
               return (
-                <div className="flex flex-row justify-center items-center">
-                  <DataNftCards dataNft={data} key={index} />
+                <div className="flex flex-row justify-center items-center" key={index}>
+                  <DataNftCards dataNft={data} />
                 </div>
               );
             })}
